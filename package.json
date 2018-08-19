@@ -1,9 +1,14 @@
 {
   "name": "polekdvd",
   "version": "1.0.0",
-  "description": "",
+  "description": "Polek DVD",
   "main": "app.js",
   "scripts": {
+    "dev-server": "webpack-dev-server",
+    "build:dev": "webpack",
+    "build:prod": "webpack -p --env production",
+    "start": "node server/server.js",
+    "heroku-postbuild": "npm run build:prod",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +20,37 @@
   "bugs": {
     "url": "https://github.com/mrybak834/PolekDVD/issues"
   },
-  "homepage": "https://github.com/mrybak834/PolekDVD#readme"
+  "homepage": "https://github.com/mrybak834/PolekDVD#readme",
+  "dependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "cross-env": "^5.2.0",
+    "css-loader": "^1.0.0",
+    "dotenv": "^6.0.0",
+    "express": "^4.16.3",
+    "file-loader": "^1.1.11",
+    "firebase": "^5.4.0",
+    "history": "^4.7.2",
+    "mini-css-extract-plugin": "^0.4.1",
+    "node-sass": "^4.9.3",
+    "normalize.css": "^8.0.0",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.3.1",
+    "redux": "^4.0.0",
+    "redux-thunk": "^2.3.0",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.22.1",
+    "webpack": "^4.16.5",
+    "webpack-cli": "^3.1.0"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^3.1.5"
+  }
 }
