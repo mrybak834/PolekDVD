@@ -9,11 +9,11 @@ export const history = createHistory();
 
 const AppRouter = () => (
   <Router history={history}>
-    <div>
+    <React.Fragment>
       <Switch>
         <Route path="/" component={Dashboard} exact />
       </Switch>
-    </div>
+    </React.Fragment>
   </Router>
 );
 
