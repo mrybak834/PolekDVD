@@ -40,35 +40,38 @@ let apiCalls = async () => {
         }
         const movie = movies[keys[key]];
 
-        let query = movie.titlePL.trim()? movie.titlePL.trim() : movie.titleEN.trim();
-        query = query.replace("/720p.*/g", "");
-        query = query.replace("/1080p.*/g", "");
-        query = query.replace("/RC.*/g", "");
-        query = query.replace("/HDTV.*/g", "");
+        let query = movie.titlePL? movie.titlePL : movie.titleEN;
+        query = query.replace(/720p.*/g, "");
+        query = query.replace(/1080p.*/g, "");
+        query = query.replace(/RC.*/g, "");
+        query = query.replace(/HDTV.*/g, "");
+        query = query.trim();
 
         // Search for the movie
         const fetchResult = await fetch("https://api.themoviedb.org/3/search/movie?api_key="+
                 api_key +
                 "&language=pl&query="+
                 query +
-                "&page=1&include_adult=true")
+                "&page=1&include_adult=true");
         const result = await fetchResult.json();
 
         let fullTitle = "" + movie.titlePL.trim() + "/" + movie.titleEN.trim();
         fullTitle = titleCase(fullTitle);
 
-        let titlePL = movie.titlePL.trim();
-        titlePL = titlePL.replace("/720p.*/g", "");
-        titlePL = titlePL.replace("/1080p.*/g", "");
-        titlePL = titlePL.replace("/RC.*/g", "");
-        titlePL = titlePL.replace("/HDTV.*/g", "");
+        let titlePL = movie.titlePL;
+        titlePL = titlePL.replace(/720p.*/g, "");
+        titlePL = titlePL.replace(/1080p.*/g, "");
+        titlePL = titlePL.replace(/RC.*/g, "");
+        titlePL = titlePL.replace(/HDTV.*/g, "");
+        titlePL = titlePL.trim();
         titlePL = titleCase(titlePL);
 
-        let titleEN = movie.titleEN.trim();
-        titleEN = titleEN.replace("/720p.*/g", "");
-        titleEN = titleEN.replace("/1080p.*/g", "");
-        titleEN = titleEN.replace("/RC.*/g", "");
-        titleEN = titleEN.replace("/HDTV.*/g", "");
+        let titleEN = movie.titleEN;
+        titleEN = titleEN.replace(/720p.*/g, "");
+        titleEN = titleEN.replace(/1080p.*/g, "");
+        titleEN = titleEN.replace(/RC.*/g, "");
+        titleEN = titleEN.replace(/HDTV.*/g, "");
+        titleEN = titleEN.trim();
         titleEN = titleCase(titleEN);
 
         let link = movie.link.trim();
@@ -106,10 +109,10 @@ let apiCalls = async () => {
 
 
 
-        if (result.results.length === 0){
+        if (result.results.length === 0 || result.results === undefined){
 
             console.log("NOT FOUND: ");
-            console.log(fullTitle);
+            console.log(query);
             // console.log(titlePL);
             // console.log(titleEN);
             // console.log(link);
@@ -136,8 +139,8 @@ let apiCalls = async () => {
             });
         }
         else {
-            titlePL = result.results[0].title;
-            titleEN = result.results[0].original_title;
+            titlePL = titleCase(result.results[0].title);
+            titleEN = titleCase(result.results[0].original_title);
             year = year? year : result.results[0].release_date;
             genre = genre? genre : (() => {
                 let genreString = "";
