@@ -13,11 +13,11 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
     layout: {
-        flex: 1,
-        width: '100%',
-        maxHeight: '100%',
-        backgroundColor: theme.palette.background.paper,
-        // width: 'auto',
+        // flex: 1,
+        // width: '100%',
+        // maxHeight: '100%',
+        // backgroundColor: theme.palette.background.paper,
+        width: 'auto',
         marginLeft: theme.spacing.unit * 3,
         marginRight: theme.spacing.unit * 3,
         [theme.breakpoints.up(1100 + theme.spacing.unit * 3 * 2)]: {
