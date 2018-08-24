@@ -14,13 +14,16 @@ const styles = theme => ({
     maxHeight: '100%',
     backgroundColor: theme.palette.background.paper,
   },
+  nav: {
+
+  }
 });
 
 function InsetList(props) {
   const { classes } = props;
   return (
     <div className={classes.root}>
-      <List component="nav">
+      <List component="nav" className={classes.nav}>
         <ListItem button>
           <ListItemIcon>
             <StarIcon />

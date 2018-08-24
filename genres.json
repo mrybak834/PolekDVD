@@ -1,0 +1,61 @@
+{
+    "genres": {
+      "28":{
+        "name": "Akcja"
+      },
+      "12":{
+        "name": "Przygodowy"
+      },
+      "16":{
+        "name": "Animacja"
+      },
+      "35":{
+        "name": "Komedia"
+      },
+      "80":{
+        "name": "Kryminał"
+      },
+      "99":{
+        "name": "Dokumentalny"
+      },
+      "18":{
+        "name": "Dramat"
+      },
+      "10751":{
+        "name": "Familijny"
+      },
+      "14":{
+        "name": "Fantazja"
+      },
+      "36":{
+        "name": "Historyczny"
+      },
+      "27":{
+        "name": "Horror"
+      },
+      "10402":{
+        "name": "Muzyczny"
+      },
+      "9648":{
+        "name": "Tajemnica"
+      },
+      "10749":{
+        "name": "Romans"
+      },
+      "878":{
+        "name": "Sci-Fi"
+      },
+      "10770":{
+        "name": "film TV"
+      },
+      "53":{
+        "name": "Thriller"
+      },
+      "10752":{
+        "name": "Wojenny"
+      },
+      "37":{
+        "name": "Western"
+      }
+    }
+  }

@@ -71,7 +71,7 @@ module.exports = env => {
               }
             }
           ]
-        }
+        },
       ]
     },
     plugins: [
@@ -103,6 +103,6 @@ module.exports = env => {
       contentBase: path.join(__dirname, "./public/"),
       historyApiFallback: true,
       publicPath: "/dist/"
-    }
+    },
   };
 };
