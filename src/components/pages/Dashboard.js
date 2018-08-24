@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '../ui/AppBar';
 import Hero from '../ui/Hero';
-import InsetList from '../ui/InsetList';
+import Grid from '../ui/Grid';
 
 const styles = theme => ({
   main: {
@@ -21,7 +21,8 @@ const Dashboard = (props) => {
     <main className={classes.main}>
       <AppBar />
       <Hero />
-      <InsetList />
+      {/* <InsetList /> */}
+      <Grid />
     </main>
   </React.Fragment>);
 };

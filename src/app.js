@@ -7,9 +7,6 @@ import {MuiThemeProvider} from '@material-ui/core/styles';
 import theme from './components/theme';
 import CssBaseline from "@material-ui/core/CssBaseline";
 import './styles/styles.scss';
-import loadDB from './scripts/loadDB';
-
-loadDB();
 
 const store = configureStore();
 const jsx = (
