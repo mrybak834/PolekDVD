@@ -61,7 +61,7 @@ module.exports = env => {
           ]
         },
         {
-          test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+          test: /\.(woff(2)?|ttf|eot|svg|png|jpg|gif|jpeg)(\?v=\d+\.\d+\.\d+)?$/,
           use: [
             {
               loader: "file-loader",
