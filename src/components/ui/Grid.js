@@ -41,6 +41,12 @@ const styles = theme => ({
   cardContent: {
     flexGrow: 1,
   },
+  truncate: {
+    display: 'block',
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+  },
 });
 
 
@@ -108,24 +114,27 @@ class Grid extends React.Component {
                     title={card.titlePL ? card.titlePL : card.titleEN}
                 />
                 <CardContent className={this.props.classes.cardContent}>
-                    <Typography gutterBottom variant="headline" component="div">
+                    <Typography gutterBottom variant="headline" component="div" className={this.props.classes.truncate}>
                     {card.titlePL ? card.titlePL : card.titleEN}
                     </Typography>
-                    <Typography gutterBottom variant="caption" component="div">
+                    <Typography gutterBottom variant="caption" component="div" className={this.props.classes.truncate}>
                     {card.titleEN ? (() => {
                       return card.titlePL ?  card.titleEN : "";
                     })() : ""}
                     </Typography>
                     <Typography>
-                    {`${card.genre} - ${card.rating} - ${card.year}`}
+                    {`${card.rating}★`}
+                    </Typography>
+                    <Typography className={this.props.classes.truncate}>
+                    {`${card.year} - ${card.genre}`}
                     </Typography>
                 </CardContent>
                 <CardActions>
                     <Button size="small" color="primary">
-                    View
+                    Więcej
                     </Button>
                     <Button size="small" color="primary">
-                    Edit
+                    Dodaj
                     </Button>
                 </CardActions>
                 </Card>
