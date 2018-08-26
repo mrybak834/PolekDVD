@@ -5,8 +5,7 @@ import AppBar from '../ui/AppBar';
 import Hero from '../ui/Hero';
 import Grid from '../ui/Grid';
 import SearchOptions from '../ui/SearchOptions';
-import SimpleBottomNavigation from '../ui/SimpleBottomNavigation';
-import Button from '@material-ui/core/Button';
+import Paginator from '../ui/Paginator';
 
 const styles = theme => ({
   main: {
@@ -18,19 +17,6 @@ const styles = theme => ({
   center: {
 
   },
-  bottom: {
-    display: "flex",
-    flexGrow: 1,
-    justifyContent: 'center',
-    bottom: 0,
-    margin: 'auto',
-    paddingBottom: 20
-  },
-  button: {
-    [theme.breakpoints.down(400)]: {
-      minWidth: 50
-    }
-  }
 });
 
 const Dashboard = (props) => {
@@ -42,24 +28,7 @@ const Dashboard = (props) => {
       <Hero />
       <SearchOptions />
       <Grid />
-      {/* <SimpleBottomNavigation /> */}
-      <div className={classes.bottom}>
-        <Button variant="outlined" color="primary" className={classes.button}>
-          &lt;&lt;
-        </Button>
-        <Button color="primary" className={classes.button}>
-          1
-        </Button>
-        <Button color="primary" className={classes.button}>
-          2
-        </Button>
-        <Button color="primary" className={classes.button}>
-          3
-        </Button>
-        <Button variant="outlined" color="primary" className={classes.button}>
-          &gt;&gt;
-        </Button>
-      </div>
+      <Paginator info={{current: 5}}/>
     </main>
   </React.Fragment>);
 };

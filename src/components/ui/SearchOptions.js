@@ -7,7 +7,12 @@ import Tab from '@material-ui/core/Tab';
 
 const styles = theme => ({
   root: {
-    flexGrow: 1
+    display: "flex",
+    flexGrow: 1,
+    justifyContent: 'center',
+    bottom: 0,
+    margin: 'auto',
+    paddingBottom: 20
   },
 });
 

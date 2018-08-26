@@ -37,7 +37,8 @@ const styles = theme => ({
   },
   cardMedia: {
     height: 'auto',
-    paddingTop: '56.25%', // 16:9
+    // paddingTop: '56.25%', // 16:9
+    paddingTop: '80%'
   },
   cardContent: {
     flexGrow: 1,
