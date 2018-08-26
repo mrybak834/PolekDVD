@@ -43,11 +43,9 @@ const Dashboard = (props) => {
       <Grid />
       {/* <SimpleBottomNavigation /> */}
       <div className={classes.bottom}>
-
         <Button variant="outlined" color="primary" className={classes.button}>
-          &lt;
+          &lt;&lt;
         </Button>
-
         <Button color="primary" className={classes.button}>
           1
         </Button>
@@ -58,7 +56,7 @@ const Dashboard = (props) => {
           3
         </Button>
         <Button variant="outlined" color="primary" className={classes.button}>
-          &gt;
+          &gt;&gt;
         </Button>
       </div>
     </main>

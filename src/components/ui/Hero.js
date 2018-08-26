@@ -25,22 +25,17 @@ function Hero(props) {
     <React.Fragment >
         <div className={classes.heroUnit}>
           <div className={classes.heroContent}>
-            <Typography variant="display3" align="center" color="textPrimary" gutterBottom>
-                Search
+            <Typography variant="display1" align="center" color="textPrimary" gutterBottom>
+              0 przedmiotów w koszyku
             </Typography>
-            <Typography variant="title" align="center" color="textSecondary" paragraph>
-              WTF
-            </Typography>
+            {/* <Typography variant="title" align="center" color="textSecondary" >
+              0 przedmiotów w koszyku
+            </Typography> */}
             <div className={classes.heroButtons}>
               <Grid container justify="center">
                 <Grid item>
                   <Button variant="contained" color="primary">
-                    Main call to action
-                  </Button>
-                </Grid>
-                <Grid item>
-                  <Button variant="outlined" color="primary">
-                    Secondary action
+                    Sprawdż zamówienie
                   </Button>
                 </Grid>
               </Grid>
