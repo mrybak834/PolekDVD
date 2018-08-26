@@ -24,6 +24,7 @@ const styles = theme => ({
     justifyContent: 'center',
     bottom: 0,
     margin: 'auto',
+    paddingBottom: 20
   },
   button: {
     [theme.breakpoints.down(400)]: {
