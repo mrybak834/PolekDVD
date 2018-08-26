@@ -91,8 +91,6 @@ class Grid extends React.Component {
                     });
                   });
 
-                  console.log(cards[0]);
-
                   this.setState(() => ({
                     cards
                   }));
