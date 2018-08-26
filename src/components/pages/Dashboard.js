@@ -8,30 +8,25 @@ import SearchOptions from '../ui/SearchOptions';
 import Paginator from '../ui/Paginator';
 
 const styles = theme => ({
-  main: {
-    display: "flex",
-    flexDirection: "column",
-    width: "100%",
-    height: "100%",
-  },
-  center: {
-
-  },
 });
 
-const Dashboard = (props) => {
-  const { classes } = props;
-  return (
-  <React.Fragment >
-    <main className={classes.main}>
-      <AppBar />
-      <Hero />
-      <SearchOptions />
-      <Grid />
-      <Paginator info={{current: 5}}/>
-    </main>
-  </React.Fragment>);
-};
+class Dashboard extends React.Component {
+
+  render() {
+    const { classes } = this.props;
+
+    return (
+      <React.Fragment >
+          <AppBar />
+          <Hero />
+          <SearchOptions />
+          <Grid info={{page: 1}}/>
+          <Paginator info={{current: 5}}/>
+      </React.Fragment>
+    );
+  }
+}
+
 
 Dashboard.propTypes = {
   classes: PropTypes.object.isRequired,

@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import AppRouter, { history } from "./routers/Router";
 import { Provider } from "react-redux";
 import configureStore from "./redux/store/config";
-import AppRouter, { history } from "./routers/Router";
+import CssBaseline from "@material-ui/core/CssBaseline";
 import {MuiThemeProvider} from '@material-ui/core/styles';
 import theme from './components/theme';
-import CssBaseline from "@material-ui/core/CssBaseline";
 import './styles/styles.scss';
 
 const store = configureStore();

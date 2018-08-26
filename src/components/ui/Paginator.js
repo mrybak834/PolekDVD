@@ -5,45 +5,47 @@ import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
     bottom: {
-        display: "flex",
-        flexGrow: 1,
-        justifyContent: 'center',
-        bottom: 0,
-        margin: 'auto',
-        paddingBottom: 20
-      },
+      display: "flex",
+      flexGrow: 1,
+      justifyContent: 'center',
+      bottom: 0,
+      margin: 'auto',
+      paddingBottom: 20,
+    },
     button: {
-        [theme.breakpoints.down(400)]: {
-          minWidth: 50
-        }
-      }
+      [theme.breakpoints.down(400)]: {
+        minWidth: 50,
+      },
+    },
 });
 
 class Paginator extends React.Component {
 
     render(){
         const { classes } = this.props;
+
         return (
-            <div className={this.props.classes.bottom}>
-                <Button variant="outlined" color="primary" className={classes.button}>
-                    &lt;&lt;
-                </Button>
-                <Button color="primary" className={classes.button}>
-                    1
-                </Button>
-                <Button color="primary" className={classes.button}>
-                    {this.props.info.current}
-                </Button>
-                <Button color="primary" className={classes.button}>
-                    3
-                </Button>
-                <Button variant="outlined" color="primary" className={classes.button}>
-                    &gt;&gt;
-                </Button>
-            </div>
+          <div className={this.props.classes.bottom}>
+            <Button variant="outlined" color="primary" className={classes.button}>
+              &lt;&lt;
+            </Button>
+            <Button color="primary" className={classes.button}>
+              1
+            </Button>
+            <Button color="primary" className={classes.button}>
+              {this.props.info.current}
+            </Button>
+            <Button color="primary" className={classes.button}>
+              3
+            </Button>
+            <Button variant="outlined" color="primary" className={classes.button}>
+              &gt;&gt;
+            </Button>
+          </div>
         );
     }
 }
+
 
 Paginator.propTypes = {
     classes: PropTypes.object.isRequired,

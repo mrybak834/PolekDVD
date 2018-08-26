@@ -1,8 +1,6 @@
 import React from "react";
-import { Router, Route, Switch } from "react-router-dom";
-// import { Link, NavLink } from "react-router-dom";
+import { Router, Route, Switch, Link, NavLink } from "react-router-dom";
 import createHistory from "history/createBrowserHistory";
-
 import Dashboard from "../components/pages/Dashboard";
 
 export const history = createHistory();

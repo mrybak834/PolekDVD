@@ -1,9 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
 
 const styles = theme => ({
   root: {
@@ -12,7 +9,7 @@ const styles = theme => ({
     justifyContent: 'center',
     bottom: 0,
     margin: 'auto',
-    paddingBottom: 20
+    paddingBottom: 20,
   },
 });
 
