@@ -11,6 +11,20 @@ const styles = theme => ({
 });
 
 class Dashboard extends React.Component {
+  /**
+   * ToDO:
+   * consider ✔️
+   * 1
+   * 2
+   * 3
+   * 4
+   * pages
+   */
+  state = {
+    current: 1,
+    first: true,
+    last: false,
+  }
 
   render() {
     const { classes } = this.props;
@@ -20,8 +34,8 @@ class Dashboard extends React.Component {
           <AppBar />
           <Hero />
           <SearchOptions />
-          <Grid info={{page: 1}}/>
-          <Paginator info={{current: 5}}/>
+          <Grid dashboardInfo={this.state}/>
+          <Paginator dashboardInfo={{current: 5}}/>
       </React.Fragment>
     );
   }

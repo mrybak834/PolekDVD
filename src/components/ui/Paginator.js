@@ -33,7 +33,7 @@ class Paginator extends React.Component {
               1
             </Button>
             <Button color="primary" className={classes.button}>
-              {this.props.info.current}
+              {this.props.dashboardInfo.current}
             </Button>
             <Button color="primary" className={classes.button}>
               3

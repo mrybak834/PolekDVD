@@ -56,6 +56,10 @@ class Grid extends React.Component {
   constructor(props){
     super(props);
 
+    this.state = {
+      moviesPerPage: 12
+    };
+
     this.loadDummyMovies();
   }
 
@@ -74,47 +78,97 @@ class Grid extends React.Component {
     };
 
     this.state = {
+      moviesPerPage: this.state.moviesPerPage,
       cards: [{...dummyMovie, id: 1 },
-              {...dummyMovie, id: 2 },
-              {...dummyMovie, id: 3 },
-              {...dummyMovie, id: 4 },
-              {...dummyMovie, id: 5 },
-              {...dummyMovie, id: 6 },
-              {...dummyMovie, id: 7 },
-              {...dummyMovie, id: 8 },
-              {...dummyMovie, id: 9 },
-              {...dummyMovie, id: 10 },
-              {...dummyMovie, id: 11 },
-              {...dummyMovie, id: 12 }],
-    }
+        {...dummyMovie, id: 2 },
+        {...dummyMovie, id: 3 },
+        {...dummyMovie, id: 4 },
+        {...dummyMovie, id: 5 },
+        {...dummyMovie, id: 6 },
+        {...dummyMovie, id: 7 },
+        {...dummyMovie, id: 8 },
+        {...dummyMovie, id: 9 },
+        {...dummyMovie, id: 10 },
+        {...dummyMovie, id: 11 },
+        {...dummyMovie, id: 12 }],
+    };
+
   }
 
   loadDBMovies(){
     const cards = [];
+
     database.ref('movies')
-      .limitToLast(12)
+      .limitToLast(1)
       .once('value')
-      .then((snapshot)=> {
-        const data = snapshot.val();
+      .then((snapshotIndex) => {
+        const highestKey = Object.keys(snapshotIndex.val())[0];
+        const pageIndex = highestKey - (this.props.dashboardInfo.current * this.state.moviesPerPage) + 1;
 
-        Object.keys(data).forEach((key) => {
-          const movie = data[key];
+        console.log(highestKey);
+        console.log(pageIndex);
+        console.log();
 
-          cards.unshift({
-            ...movie,
-            id: parseInt(key, 10)
-          });
-        });
+        // Get the page of movies
+        database.ref('movies')
+          .orderByKey()
+          .startAt(pageIndex.toString())
+          .limitToFirst(this.state.moviesPerPage)
+          .once('value')
+          .then((snapshotPage) => {
+            const data = snapshotPage.val();
 
-        this.setState(() => ({
-          cards
-        }));
+            Object.keys(data).forEach((key) => {
+              console.log(key);
 
-        return;
+              const movie = data[key];
+
+              cards.unshift({
+                ...movie,
+                id: parseInt(key, 10)
+              });
+            });
+
+            this.setState((prevState) => ({
+              cards,
+              moviesPerPage: prevState.moviesPerPage
+            }));
+
+            return;
+          })
       });
+
+    // database.ref('movies')
+    //   .orderByKey()
+    //   .startAt('48')
+    //   .limitToFirst(this.state.moviesPerPage)
+    //   .once('value')
+    //   .then((snapshot)=> {
+    //     const data = snapshot.val();
+
+    //     console.log(Object.keys(data)[0]);
+
+    //     Object.keys(data).forEach((key) => {
+    //       console.log(key);
+
+    //       const movie = data[key];
+
+    //       cards.unshift({
+    //         ...movie,
+    //         id: parseInt(key, 10)
+    //       });
+    //     });
+
+    //     this.setState((prevState) => ({
+    //       cards,
+    //       moviesPerPage: prevState.moviesPerPage
+    //     }));
+
+    //     return;
+    //   });
   }
 
-  componentWillMount(){
+  componentDidMount(){
     this.loadDBMovies();
   }
 
