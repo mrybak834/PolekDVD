@@ -103,13 +103,8 @@ class Grid extends React.Component {
       .once('value')
       .then((snapshotIndex) => {
         const highestKey = Object.keys(snapshotIndex.val())[0];
-        const pageIndex = highestKey - (this.props.dashboardInfo.current * this.state.moviesPerPage) + 1;
+        const pageIndex = highestKey - (this.props.page * this.state.moviesPerPage) + 1;
 
-        console.log(highestKey);
-        console.log(pageIndex);
-        console.log();
-
-        // Get the page of movies
         database.ref('movies')
           .orderByKey()
           .startAt(pageIndex.toString())
@@ -119,8 +114,6 @@ class Grid extends React.Component {
             const data = snapshotPage.val();
 
             Object.keys(data).forEach((key) => {
-              console.log(key);
-
               const movie = data[key];
 
               cards.unshift({
@@ -135,37 +128,8 @@ class Grid extends React.Component {
             }));
 
             return;
-          })
+          });
       });
-
-    // database.ref('movies')
-    //   .orderByKey()
-    //   .startAt('48')
-    //   .limitToFirst(this.state.moviesPerPage)
-    //   .once('value')
-    //   .then((snapshot)=> {
-    //     const data = snapshot.val();
-
-    //     console.log(Object.keys(data)[0]);
-
-    //     Object.keys(data).forEach((key) => {
-    //       console.log(key);
-
-    //       const movie = data[key];
-
-    //       cards.unshift({
-    //         ...movie,
-    //         id: parseInt(key, 10)
-    //       });
-    //     });
-
-    //     this.setState((prevState) => ({
-    //       cards,
-    //       moviesPerPage: prevState.moviesPerPage
-    //     }));
-
-    //     return;
-    //   });
   }
 
   componentDidMount(){

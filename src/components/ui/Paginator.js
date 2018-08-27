@@ -21,12 +21,25 @@ const styles = theme => ({
 
 class Paginator extends React.Component {
 
+    state = {
+      firstPageDisabled: true,
+      lastPageDisabled: true,
+    };
+
+    setPages(){
+
+    }
+
+    componentDidMount(){
+      this.setPages();
+    }
+
     render(){
         const { classes } = this.props;
 
         return (
           <div className={this.props.classes.bottom}>
-            <Button variant="outlined" color="primary" className={classes.button}>
+            <Button variant="outlined" color="primary" disabled={this.state.firstPageDisabled} className={classes.button}>
               &lt;&lt;
             </Button>
             <Button color="primary" className={classes.button}>
@@ -38,7 +51,7 @@ class Paginator extends React.Component {
             <Button color="primary" className={classes.button}>
               3
             </Button>
-            <Button variant="outlined" color="primary" className={classes.button}>
+            <Button variant="outlined" color="primary" disabled={this.state.firstPageDisabled} className={classes.button}>
               &gt;&gt;
             </Button>
           </div>

@@ -22,7 +22,6 @@ class Dashboard extends React.Component {
    */
   state = {
     current: 1,
-    first: true,
     last: false,
   }
 
@@ -34,8 +33,8 @@ class Dashboard extends React.Component {
           <AppBar />
           <Hero />
           <SearchOptions />
-          <Grid dashboardInfo={this.state}/>
-          <Paginator dashboardInfo={{current: 5}}/>
+          <Grid page={this.state.current}/>
+          <Paginator dashboardInfo={this.state}/>
       </React.Fragment>
     );
   }
