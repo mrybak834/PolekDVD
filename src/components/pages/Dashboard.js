@@ -22,7 +22,7 @@ class Dashboard extends React.Component {
    */
   state = {
     current: 1,
-    last: false,
+    last: true,
   }
 
   render() {
