@@ -47,7 +47,7 @@ class Dashboard extends React.Component {
       <React.Fragment >
           <AppBar />
           <Hero />
-          <SearchOptions />
+          {/* <SearchOptions /> */}
           <Grid pageInfo={this.state} updateLastSeenHandler={this.updateLastSeen}/>
           <Paginator pageInfo={this.state} changePageHandler={this.changePage}/>
       </React.Fragment>
