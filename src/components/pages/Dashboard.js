@@ -48,6 +48,7 @@ class Dashboard extends React.Component {
           <AppBar />
           <Hero />
           {/* <SearchOptions /> */}
+          {/* Updating heroku delete this */}
           <Grid pageInfo={this.state} updateLastSeenHandler={this.updateLastSeen}/>
           <Paginator pageInfo={this.state} changePageHandler={this.changePage}/>
       </React.Fragment>
