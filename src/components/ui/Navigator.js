@@ -47,7 +47,7 @@ class Navigator extends React.Component {
           <Button color="primary" disabled className={classes.button}>
             {this.props.current}
           </Button>
-          <Button color="primary" onClick={this.nextPage} className={classes.button}>
+          <Button color="primary" href="#" onClick={this.nextPage} className={classes.button}>
             {this.props.current + 1}
           </Button>
         </React.Fragment>
@@ -57,7 +57,7 @@ class Navigator extends React.Component {
     else if (this.props.current != 1 && this.props.lastPage){
       return (
         <React.Fragment>
-          <Button color="primary" onClick={this.prevPage} className={classes.button}>
+          <Button color="primary" href="#" onClick={this.prevPage} className={classes.button}>
             {this.props.current - 1}
           </Button>
           <Button color="primary" disabled className={classes.button}>
@@ -70,13 +70,13 @@ class Navigator extends React.Component {
     else {
       return (
         <React.Fragment>
-          <Button color="primary" onClick={this.prevPage} className={classes.button}>
+          <Button color="primary" href="#" onClick={this.prevPage} className={classes.button}>
             {this.props.current - 1}
           </Button>
           <Button color="primary" disabled className={classes.button}>
             {this.props.current}
           </Button>
-          <Button color="primary" onClick={this.nextPage} className={classes.button}>
+          <Button color="primary" href="#" onClick={this.nextPage} className={classes.button}>
             {this.props.current + 1}
           </Button>
         </React.Fragment>
@@ -109,11 +109,11 @@ class Navigator extends React.Component {
 
     return (
       <div className={classes.bottom}>
-        <Button variant="outlined" onClick={this.firstPage} color="primary" disabled={this.props.current === 1} className={classes.button}>
+        <Button variant="outlined" href="#" onClick={this.firstPage} color="primary" disabled={this.props.current === 1} className={classes.button}>
           &lt;&lt;
         </Button>
         {this.pageCount()}
-        <Button variant="outlined" color="primary" disabled={true} className={classes.button}>
+        <Button variant="outlined" color="primary" href="#" onClick={this.lastPage} disabled={true} className={classes.button}>
           &gt;&gt;
         </Button>
       </div>
