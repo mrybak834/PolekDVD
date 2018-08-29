@@ -33,6 +33,13 @@ class Dashboard extends React.Component {
     }));
   };
 
+  changePage = (nextPage) => {
+    this.setState((prevState) => ({
+      ...prevState,
+      current: nextPage
+    }));
+  }
+
   render() {
     const { classes } = this.props;
 
@@ -42,7 +49,7 @@ class Dashboard extends React.Component {
           <Hero />
           <SearchOptions />
           <Grid pageInfo={this.state} updateLastSeenHandler={this.updateLastSeen}/>
-          <Paginator pageInfo={this.state}/>
+          <Paginator pageInfo={this.state} changePageHandler={this.changePage}/>
       </React.Fragment>
     );
   }

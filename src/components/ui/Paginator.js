@@ -78,7 +78,7 @@ class Paginator extends React.Component {
       const { classes } = this.props;
 
       return (
-        <Navigator current={this.props.pageInfo.current} lastPage={this.state.lastPage}/>
+        <Navigator changePageHandler={this.props.changePageHandler} current={this.props.pageInfo.current} lastPage={this.state.lastPage}/>
       );
   }
 }

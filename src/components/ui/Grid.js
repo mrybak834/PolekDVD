@@ -97,12 +97,23 @@ class Grid extends React.Component {
               });
             });
 
-            // Send the last movie seen in order to update paginator
-            this.props.updateLastSeenHandler(parseInt(movies[0], 10));
+            // Check if it is an actual update
+            let shouldUpdate = false;
+            let i;
+            for (i = 0; i < this.state.cards.length; i += 1){
+              if (cards[i].id != this.state.cards[i].id){
+                shouldUpdate = true;
+              }
+            }
+            
+            if (shouldUpdate || this.state.cards.length === 0){
+              // Send the last movie seen in order to update paginator
+              this.props.updateLastSeenHandler(parseInt(movies[0], 10));
 
-            this.setState(() => ({
-              cards
-            }));
+              this.setState(() => ({
+                cards
+              }));
+            }
 
             return;
           });
@@ -110,6 +121,10 @@ class Grid extends React.Component {
   }
 
   componentDidMount(){
+    this.loadDBMovies();
+  }
+
+  componentDidUpdate(){
     this.loadDBMovies();
   }
 

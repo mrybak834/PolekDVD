@@ -22,10 +22,14 @@ const styles = theme => ({
 
 
 class Navigator extends React.Component {
+
+  constructor(props){
+    super(props);
+
+    
+  }
   
   pageCount(){
-    console.log(this.props.current);
-    console.log(this.props.lastPage);
     const { classes } = this.props;
 
     // First and last page (1 page)
@@ -43,7 +47,7 @@ class Navigator extends React.Component {
           <Button color="primary" disabled className={classes.button}>
             {this.props.current}
           </Button>
-          <Button color="primary" className={classes.button}>
+          <Button color="primary" onClick={this.nextPage} className={classes.button}>
             {this.props.current + 1}
           </Button>
         </React.Fragment>
@@ -53,7 +57,7 @@ class Navigator extends React.Component {
     else if (this.props.current != 1 && this.props.lastPage){
       return (
         <React.Fragment>
-          <Button color="primary" className={classes.button}>
+          <Button color="primary" onClick={this.prevPage} className={classes.button}>
             {this.props.current - 1}
           </Button>
           <Button color="primary" disabled className={classes.button}>
@@ -66,36 +70,50 @@ class Navigator extends React.Component {
     else {
       return (
         <React.Fragment>
-          <Button color="primary" className={classes.button}>
+          <Button color="primary" onClick={this.prevPage} className={classes.button}>
             {this.props.current - 1}
           </Button>
           <Button color="primary" disabled className={classes.button}>
             {this.props.current}
           </Button>
-          <Button color="primary" className={classes.button}>
+          <Button color="primary" onClick={this.nextPage} className={classes.button}>
             {this.props.current + 1}
           </Button>
         </React.Fragment>
       );
     }
-
-
-/**
- * enum: 'text', 'flat', 'outlined', 'contained', 'raised', 'fab', 'extendedFab'
- */
-
   };
+
+  firstPage = () => {
+    this.props.changePageHandler(1);
+  }
+
+  prevPage = () => {
+    this.props.changePageHandler(this.props.current - 1);
+  }
+
+  nextPage = () => {
+    console.log("clicking");
+    this.props.changePageHandler(this.props.current + 1);
+  }
+
+  lastPage = () => {
+    /**
+     * Since there is no firebase support for getting a count of items (without paying, mind),
+     *  this can't be implemented for now without a ton of overhead
+     */
+  }
 
   render() {
     const { classes } = this.props;
 
     return (
       <div className={classes.bottom}>
-        <Button variant="outlined" color="primary" disabled={this.props.current === 1} className={classes.button}>
+        <Button variant="outlined" onClick={this.firstPage} color="primary" disabled={this.props.current === 1} className={classes.button}>
           &lt;&lt;
         </Button>
         {this.pageCount()}
-        <Button variant="outlined" color="primary" disabled={this.props.lastPage} className={classes.button}>
+        <Button variant="outlined" color="primary" disabled={true} className={classes.button}>
           &gt;&gt;
         </Button>
       </div>
@@ -108,17 +126,3 @@ Navigator.propTypes = {
 }
 
 export default withStyles(styles)(Navigator);
-
-/**
- *     <div className={this.props.classes.bottom}>
-      <Button variant="outlined" color="primary" disabled={true} className={classes.button}>
-        &lt;&lt;
-      </Button>
-      <Button color="primary" className={classes.button}>
-        {this.props.current}
-      </Button>
-      <Button variant="outlined" color="primary" disabled={true} className={classes.button}>
-        &gt;&gt;
-      </Button>
-    </div>
- */
