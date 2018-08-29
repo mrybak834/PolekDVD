@@ -21,9 +21,17 @@ class Dashboard extends React.Component {
    * pages
    */
   state = {
-    current: 1,
-    last: true,
+    current: 2,
+    moviesPerPage: 12,
+    lastMovieSeen: 0
   }
+
+  updateLastSeen = (id) => {
+    this.setState((prevState) => ({
+      ...prevState,
+      lastMovieSeen: id
+    }));
+  };
 
   render() {
     const { classes } = this.props;
@@ -33,8 +41,8 @@ class Dashboard extends React.Component {
           <AppBar />
           <Hero />
           <SearchOptions />
-          <Grid page={this.state.current}/>
-          <Paginator dashboardInfo={this.state}/>
+          <Grid pageInfo={this.state} updateLastSeenHandler={this.updateLastSeen}/>
+          <Paginator pageInfo={this.state}/>
       </React.Fragment>
     );
   }

@@ -57,64 +57,39 @@ class Grid extends React.Component {
     super(props);
 
     this.state = {
-      moviesPerPage: 12
+      cards: [],
     };
-
-    this.loadDummyMovies();
-  }
-
-  loadDummyMovies(){
-    const dummyMovie = {
-      backdropPath: "",
-      description: "Ładuję",
-      fullTitle: "Ładuję",
-      genre: "Ładuję",
-      link: "",
-      posterPath: "",
-      rating: 0,
-      titleEN: "Ładuję",
-      titlePL: "Ładuję",
-      year: 0,
-    };
-
-    this.state = {
-      moviesPerPage: this.state.moviesPerPage,
-      cards: [{...dummyMovie, id: 1 },
-        {...dummyMovie, id: 2 },
-        {...dummyMovie, id: 3 },
-        {...dummyMovie, id: 4 },
-        {...dummyMovie, id: 5 },
-        {...dummyMovie, id: 6 },
-        {...dummyMovie, id: 7 },
-        {...dummyMovie, id: 8 },
-        {...dummyMovie, id: 9 },
-        {...dummyMovie, id: 10 },
-        {...dummyMovie, id: 11 },
-        {...dummyMovie, id: 12 }],
-    };
-
   }
 
   loadDBMovies(){
     const cards = [];
 
+    // Get max index
     database.ref('movies')
       .limitToLast(1)
       .once('value')
       .then((snapshotIndex) => {
         const highestKey = Object.keys(snapshotIndex.val())[0];
-        const pageIndex = highestKey - (this.props.page * this.state.moviesPerPage) + 1;
+        const pageIndex = highestKey - (this.props.pageInfo.current * this.props.pageInfo.moviesPerPage) + 1;
 
+
+        // Get page
         database.ref('movies')
           .orderByKey()
           .startAt(pageIndex.toString())
-          .limitToFirst(this.state.moviesPerPage)
+          .limitToFirst(this.props.pageInfo.moviesPerPage)
           .once('value')
           .then((snapshotPage) => {
             const data = snapshotPage.val();
+            
+            const movies = Object.keys(data);
 
-            Object.keys(data).forEach((key) => {
+            movies.forEach((key) => {
               const movie = data[key];
+
+              if (movie.posterPath == "http://image.tmdb.org/t/p/w500/null"){
+                movie.posterPath = "";
+              }
 
               cards.unshift({
                 ...movie,
@@ -122,9 +97,11 @@ class Grid extends React.Component {
               });
             });
 
-            this.setState((prevState) => ({
-              cards,
-              moviesPerPage: prevState.moviesPerPage
+            // Send the last movie seen in order to update paginator
+            this.props.updateLastSeenHandler(parseInt(movies[0], 10));
+
+            this.setState(() => ({
+              cards
             }));
 
             return;
