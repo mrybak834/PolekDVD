@@ -21,7 +21,7 @@ class Dashboard extends React.Component {
    * pages
    */
   state = {
-    current: 2,
+    current: 1,
     moviesPerPage: 12,
     lastMovieSeen: 0
   }
