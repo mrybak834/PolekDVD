@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import { forEach } from '@firebase/util';
 
 const styles = theme => ({
   heroUnit: {
@@ -26,8 +27,13 @@ function Hero(props) {
     <React.Fragment >
       <div className={classes.heroUnit}>
         <div className={classes.heroContent}>
+        
           <Typography variant="display1" align="center" color="textPrimary" gutterBottom>
-            0 przedmiotów w koszyku
+            {Object.keys(props.cart).length === 0  ? '0 przedmiotów w koszyku' : (
+              Object.keys(props.cart).length === 1 ? '1 przedmiot w koszyku' : (
+                Object.keys(props.cart).length > 1 && Object.keys(props.cart).length <= 4 ? `${Object.keys(props.cart).length} przedmioty w koszyku` : `${Object.keys(props.cart).length} przedmiotów w koszyku`
+              )
+            )}
           </Typography>
           {/* <Typography variant="title" align="center" color="textSecondary" >
             0 przedmiotów w koszyku

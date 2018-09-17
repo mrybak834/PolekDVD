@@ -10,6 +10,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import GridUI from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import database from '../../firebase/firebase';
+import ScrollDialog from './ScrollDialog';
 
 const styles = theme => ({
   container: {
@@ -48,6 +49,9 @@ const styles = theme => ({
     whiteSpace: 'nowrap',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
+  },
+  hidden: {
+    display: 'none',
   },
 });
 
@@ -159,11 +163,9 @@ class Grid extends React.Component {
                       </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button size="small" color="primary">
-                    Więcej
-                    </Button>
-                    <Button size="small" color="primary">
-                    Dodaj
+                    <ScrollDialog movie={card}/>
+                    <Button onClick={() => this.props.addToCartHandler(card.id, card.titlePL ? card.titlePL : card.titleEN)} size="small" color="primary">
+                      Dodaj
                     </Button>
                   </CardActions>
                   </Card>

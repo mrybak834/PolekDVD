@@ -11,19 +11,11 @@ const styles = theme => ({
 });
 
 class Dashboard extends React.Component {
-  /**
-   * ToDO:
-   * consider ✔️
-   * 1
-   * 2
-   * 3
-   * 4
-   * pages
-   */
   state = {
     current: 1,
     moviesPerPage: 12,
-    lastMovieSeen: 0
+    lastMovieSeen: 0,
+    cart: {},
   }
 
   updateLastSeen = (id) => {
@@ -40,16 +32,28 @@ class Dashboard extends React.Component {
     }));
   }
 
+  addToCart = (id, title) => {
+    this.setState((prevState) => ({
+      ...prevState,
+      cart: {
+        ...prevState.cart,
+        [id]: {
+          title
+        }
+      }
+    }))
+  }
+
   render() {
     const { classes } = this.props;
 
     return (
       <React.Fragment >
           <AppBar />
-          <Hero />
+          <Hero cart={this.state.cart}/>
           {/* <SearchOptions /> */}
           {/* Updating heroku delete this */}
-          <Grid pageInfo={this.state} updateLastSeenHandler={this.updateLastSeen}/>
+          <Grid pageInfo={this.state} updateLastSeenHandler={this.updateLastSeen} addToCartHandler={this.addToCart}/>
           <Paginator pageInfo={this.state} changePageHandler={this.changePage}/>
       </React.Fragment>
     );

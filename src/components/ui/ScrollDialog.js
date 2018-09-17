@@ -1,10 +1,26 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import classNames from 'classnames';
 import Button from '@material-ui/core/Button';
+import CardMedia from '@material-ui/core/CardMedia';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+
+const styles = theme => ({
+  cardMedia: {
+    height: 'auto',
+    // paddingTop: '56.25%', // 16:9
+    paddingTop: '56.25%'
+  },
+  scroll: {
+    overflow: 'scroll',
+    maxHeight: '22vh',
+  }
+});
 
 class ScrollDialog extends React.Component {
   state = {
@@ -21,63 +37,41 @@ class ScrollDialog extends React.Component {
   };
 
   render() {
+    const { classes } = this.props;
+
     return (
       <div>
-        <Button onClick={this.handleClickOpen('paper')}>scroll=paper</Button>
-        <Button onClick={this.handleClickOpen('body')}>scroll=body</Button>
+        <Button size="small" color="primary" onClick={this.handleClickOpen('paper')}>Więcej</Button>
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
           scroll={this.state.scroll}
           aria-labelledby="scroll-dialog-title"
         >
-          <DialogTitle id="scroll-dialog-title">Subscribe</DialogTitle>
+          <CardMedia
+            className={classes.cardMedia}
+            image={this.props.movie.backdropPath ? this.props.movie.backdropPath : "/images/movie.jpg"}
+            title={this.props.movie.titlePL ? this.props.movie.titlePL : this.props.movie.titleEN}
+          />
+          <DialogTitle  id="scroll-dialog-title">{this.props.movie.titlePL ? this.props.movie.titlePL : this.props.movie.titleEN}</DialogTitle>
           <DialogContent>
+            <DialogContentText variant="subheading">
+              <b>
+                {this.props.movie.titleEN ? (() => {
+                            return this.props.movie.titlePL ?  this.props.movie.titleEN : "";
+                          })() : ""}
+              </b>
+            </DialogContentText>
             <DialogContentText>
-              Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac
-              facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum
-              at eros. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus
-              sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum
-              nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur
-              et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla. Cras
-              mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in,
-              egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-              Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis
-              lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla
-              sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-              Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla. Cras mattis
-              consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in,
-              egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-              Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis
-              lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla
-              sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-              Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla. Cras mattis
-              consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in,
-              egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-              Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis
-              lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla
-              sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-              Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla. Cras mattis
-              consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in,
-              egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-              Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis
-              lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla
-              sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-              Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla. Cras mattis
-              consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in,
-              egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-              Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis
-              lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla
-              sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-              Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.
+              {this.props.movie.description}
             </DialogContentText>
           </DialogContent>
           <DialogActions>
             <Button onClick={this.handleClose} color="primary">
-              Cancel
+              Zamknij
             </Button>
             <Button onClick={this.handleClose} color="primary">
-              Subscribe
+              Zamów
             </Button>
           </DialogActions>
         </Dialog>
@@ -86,4 +80,8 @@ class ScrollDialog extends React.Component {
   }
 }
 
-export default ScrollDialog;
+ScrollDialog.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(ScrollDialog);
