@@ -70,7 +70,7 @@ class ScrollDialog extends React.Component {
             <Button onClick={this.handleClose} color="primary">
               Zamknij
             </Button>
-            <Button onClick={this.handleClose} color="primary">
+            <Button onClick={this.props.addToCartHandler} color="primary">
               Zamów
             </Button>
           </DialogActions>

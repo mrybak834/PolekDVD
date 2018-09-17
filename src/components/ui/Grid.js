@@ -163,7 +163,7 @@ class Grid extends React.Component {
                       </Typography>
                   </CardContent>
                   <CardActions>
-                    <ScrollDialog movie={card}/>
+                    <ScrollDialog movie={card} addToCartHandler={() => this.props.addToCartHandler(card.id, card.titlePL ? card.titlePL : card.titleEN)}/>
                     <Button onClick={() => this.props.addToCartHandler(card.id, card.titlePL ? card.titlePL : card.titleEN)} size="small" color="primary">
                       Dodaj
                     </Button>
