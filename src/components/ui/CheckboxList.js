@@ -62,7 +62,7 @@ class CheckboxList extends React.Component {
             >
               <ListItemText primary={`${this.props.cart[movie].title}`} />
               <ListItemSecondaryAction>
-                <IconButton aria-label="Comments">
+                <IconButton onClick={() => this.props.removeFromCartHandler(movie)} aria-label="Usuń">
                   <DeleteIcon />
                 </IconButton>
               </ListItemSecondaryAction>

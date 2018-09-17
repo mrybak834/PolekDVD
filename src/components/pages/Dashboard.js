@@ -44,13 +44,27 @@ class Dashboard extends React.Component {
     }))
   }
 
+  removeFromCart = (id) => {
+    this.setState((prevState) => {
+      const newCart = prevState.cart;
+      delete newCart[id];
+      
+      return {
+        ...prevState,
+        cart: {
+          ...prevState.cart,
+        }
+      };
+    });
+  }
+
   render() {
     const { classes } = this.props;
 
     return (
       <React.Fragment >
           <AppBar />
-          <Hero cart={this.state.cart}/>
+          <Hero cart={this.state.cart} removeFromCartHandler={this.removeFromCart} />
           {/* <SearchOptions /> */}
           {/* Updating heroku delete this */}
           <Grid pageInfo={this.state} updateLastSeenHandler={this.updateLastSeen} addToCartHandler={this.addToCart}/>

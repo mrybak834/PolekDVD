@@ -28,7 +28,6 @@ function Hero(props) {
     <React.Fragment >
       <div className={classes.heroUnit}>
         <div className={classes.heroContent}>
-        
           <Typography variant="display1" align="center" color="textPrimary" gutterBottom>
             {Object.keys(props.cart).length === 0  ? '0 przedmiotów w koszyku' : (
               Object.keys(props.cart).length === 1 ? '1 przedmiot w koszyku' : (
@@ -36,13 +35,10 @@ function Hero(props) {
               )
             )}
           </Typography>
-          {/* <Typography variant="title" align="center" color="textSecondary" >
-            0 przedmiotów w koszyku
-          </Typography> */}
           <div className={classes.heroButtons}>
             <Grid container justify="center">
               <Grid item>
-                <CartDialog cart={props.cart}/>
+                <CartDialog cart={props.cart} removeFromCartHandler={props.removeFromCartHandler}/>
               </Grid>
             </Grid>
           </div>

@@ -65,7 +65,7 @@ class CartDialog extends React.Component {
           <div className={classes.dialog}>
             <DialogTitle  id="scroll-dialog-title">Koszyk</DialogTitle>
             <DialogContent>
-              <CheckboxList cart={this.props.cart}/>
+              <CheckboxList cart={this.props.cart} removeFromCartHandler={this.props.removeFromCartHandler}/>
             </DialogContent>
             <DialogActions>
               <Button onClick={this.handleClose} color="primary">
