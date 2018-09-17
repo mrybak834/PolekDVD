@@ -9,6 +9,8 @@
 import firebase from "firebase/app";
 import "firebase/database";
 import "firebase/auth";
+import firebaseui from 'firebaseui';
+import 'firebaseui/dist/firebaseui.css';
 
 // Initialize Firebase
 const config = {
@@ -21,8 +23,9 @@ const config = {
 };
 firebase.initializeApp(config);
 
+const authUI = new firebaseui.auth.AuthUI(firebase.auth());
 const database = firebase.database();
 const auth = firebase.auth();
 const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 
-export { firebase, auth, googleAuthProvider, database as default };
+export { firebase, auth, googleAuthProvider, firebaseui, authUI, database as default };
