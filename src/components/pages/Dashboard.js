@@ -4,7 +4,6 @@ import { withStyles } from '@material-ui/core/styles';
 import AppBar from '../ui/AppBar';
 import Hero from '../ui/Hero';
 import Grid from '../ui/Grid';
-import SearchOptions from '../ui/SearchOptions';
 import Paginator from '../ui/Paginator';
 
 const styles = theme => ({
@@ -48,7 +47,7 @@ class Dashboard extends React.Component {
     this.setState((prevState) => {
       const newCart = prevState.cart;
       delete newCart[id];
-      
+
       return {
         ...prevState,
         cart: {
