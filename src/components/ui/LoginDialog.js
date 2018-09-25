@@ -96,7 +96,11 @@ class LoginDialog extends React.Component {
     if (! /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/.test(this.state.phone.trim())){
       phoneValid = false;
     }
-    if (! /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/.test(this.state.email.trim())){
+    if (
+        (! this.state.email.trim().length == 0) &&
+        (! /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/.test(this.state.email.trim()))
+
+        ){
       emailValid = false;
     }
 
@@ -108,6 +112,9 @@ class LoginDialog extends React.Component {
       emailValid,
     }));
 
+    if (firstNameValid && lastNameValid && phoneValid && emailValid){
+      console.log("Logging in");
+    }
 
   }
 
@@ -160,12 +167,11 @@ class LoginDialog extends React.Component {
                 <TextField
                   id="email"
                   label="Email"
-                  helperText="Opcjonalnie"
                   className={classes.textField}
                   value={this.state.email}
                   onChange={this.handleChange('email')}
                   margin="normal"
-                  helperText={this.state.emailValid ? '' : 'Email: Pusty, albo użytkownik@strona.com'}
+                  helperText={this.state.emailValid ? 'Opcjonalny' : 'Email: Pusty, albo użytkownik@strona.com'}
                   error={!this.state.emailValid}
                 />
               </form>
